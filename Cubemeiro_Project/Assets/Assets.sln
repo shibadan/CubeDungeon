@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
 Project("{9AEDEAF1-F77B-8642-ABE5-28503B8C5DE8}") = "Assets", "Assembly-CSharp.csproj", "{17533FA3-357A-CEC6-ED1C-9FA92629C572}"
@@ -17,7 +17,15 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 						GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+								GlobalSection(MonoDevelopProperties) = preSolution
+=======
+							GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> origin/master
+>>>>>>> origin/master
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
