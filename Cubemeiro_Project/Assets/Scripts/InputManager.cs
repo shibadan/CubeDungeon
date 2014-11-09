@@ -10,17 +10,17 @@ public class InputManager : MonoBehaviour {
 	void Update()
 	{
 		// スライド開始地点.
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire2"))
 			slideStartPosition = GetCursorPosition();
 		
 		// 画面の１割以上移動させたらスライド開始と判断する.
-		if (Input.GetButton("Fire1")) {
+		if (Input.GetButton("Fire2")) {
 			if (Vector2.Distance(slideStartPosition,GetCursorPosition()) >= (Screen.width * 0.1f))
 				moved = true;
 		}
-		
+
 		// スライド操作が終了したか.
-		if (!Input.GetButtonUp("Fire1") && !Input.GetButton("Fire1"))
+		if (!Input.GetButtonUp("Fire2") && !Input.GetButton("Fire2"))
 			moved = false; // スライドは終わった.
 		
 		// 移動量を求める.

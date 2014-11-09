@@ -7,7 +7,7 @@ public class PlayerCtr : MonoBehaviour {
     public float attackRange = 1.5f;
 	// Use this for initialization
 	void Start () {
-	
+        inputManager = FindObjectOfType<InputManager>();
 	}
 	
 	// Update is called once per frame
