@@ -145,10 +145,8 @@ public class BoxMaker : MonoBehaviour {
             case 4:
             case 5:
                 int y = no % 3;
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
+                for (int i = 0; i < 3; i++){
+                    for (int j = 0; j < 3; j++){
                         if (i != 1 || j != 1){
                             boxlist[boxes[i, y, j]].transform.parent = t_prop.getFather().transform;
                             int[] p = calc_turn(j, i);
@@ -161,10 +159,8 @@ public class BoxMaker : MonoBehaviour {
             case 7:
             case 8:
                 int z = no % 3;
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++){
                         if (i != 1 || j != 1){
                             boxlist[boxes[i, j, z]].transform.parent = t_prop.getFather().transform;
                             int[] p = calc_turn(i, j);
