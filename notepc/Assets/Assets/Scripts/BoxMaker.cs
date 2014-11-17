@@ -21,11 +21,13 @@ public class BoxMaker : MonoBehaviour {
 
     private float pre_rotate;
 
+    private bool freetime = false; 
+
     private bool isTurning = false;
     private TurnProp t_prop = new TurnProp();
 
 	// Use this for initialization
-    void Start(){
+    void Start() {
         int no = 0;
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++){
@@ -38,7 +40,7 @@ public class BoxMaker : MonoBehaviour {
         }
     }
 
-    private int center(int no){
+    private int center(int no) {
         switch (no){
             //x固定
             case 0: return boxes[0, 1, 1];
@@ -58,7 +60,10 @@ public class BoxMaker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isTurning){
+        if (freetime) {
+            freetime = false;
+        }
+        else if (isTurning){
             frame += Time.deltaTime;
             t_prop.turn();
             if (frame >= 1){
@@ -71,13 +76,15 @@ public class BoxMaker : MonoBehaviour {
             int fatherNo = Random.Range(0, 9);
             int axis = fatherNo / 3;
             isTurning = true;
-            frame = 0;
 
             detatch();
 
             t_prop.setTurnProp(axis, boxlist[center(fatherNo)], 1);
             
             setChildren(fatherNo);
+
+            frame = 0;
+            freetime = true;
         }
         else{
             frame += Time.deltaTime;
@@ -199,6 +206,8 @@ public class BoxMaker : MonoBehaviour {
             return father;
         }
 
+
+        //RotateAroundを使えば親子をいじらなくてもいい（？）
         public void turn(){
             float t = Time.deltaTime;
             father.transform.Rotate(new Vector3(t * speed * axis.x, t * speed * axis.y, t * speed * axis.z),Space.World);
