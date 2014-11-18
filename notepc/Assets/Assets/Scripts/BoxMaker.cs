@@ -12,6 +12,8 @@ public class BoxMaker : MonoBehaviour {
     List<GameObject> boxlist = new List<GameObject>();
     private int[, ,] boxes = new int[3, 3, 3];
     private int[, ,] tmp = new int[3, 3, 3];
+    private int[] detatchlist = new int[8];
+    private int detatchCount = 10;
 
     //private int[] center = new int[9];
     private int[,] PLUSTURN = new int[,] { { 0, -1 }, { 1, 0 } };
@@ -40,6 +42,10 @@ public class BoxMaker : MonoBehaviour {
         }
     }
 
+    public List<GameObject> getBox(){
+        return boxlist;
+    }
+
     private int center(int no) {
         switch (no){
             //x固定
@@ -63,24 +69,27 @@ public class BoxMaker : MonoBehaviour {
         if (freetime) {
             freetime = false;
         }
+        else if (detatchCount < 8){
+            detatch(detatchlist[detatchCount]);
+            detatchCount++;
+            frame = 0;
+        }
         else if (isTurning){
             frame += Time.deltaTime;
             t_prop.turn();
             if (frame >= 1){
                 isTurning = false;
                 t_prop.turn(1f - frame);
-                frame = 0;
+                detatchCount = 0;
             }
         }
-        else if(frame > 0.1){
+        else if (frame >= 1){
             int fatherNo = Random.Range(0, 9);
             int axis = fatherNo / 3;
             isTurning = true;
 
-            detatch();
-
             t_prop.setTurnProp(axis, boxlist[center(fatherNo)], 1);
-            
+
             setChildren(fatherNo);
 
             frame = 0;
@@ -91,10 +100,8 @@ public class BoxMaker : MonoBehaviour {
         }
 	}
 
-    private void detatch(){
-        foreach (GameObject b in boxlist){
-            b.transform.parent = null;
-        }
+    private void detatch(int b){
+        boxlist[b].transform.parent = null;
     }
 
     private int[] calc_turn(int i, int j){
@@ -105,8 +112,7 @@ public class BoxMaker : MonoBehaviour {
         result[1] = i * PLUSTURN[1, 0] + j * PLUSTURN[1, 1];
         result[0]++;
         result[1]++;
-        if (result[0] == 1 && result[1] == 1)
-        {
+        if (result[0] == 1 && result[1] == 1){
             Debug.Log("calc_Bug");
         }
         return result;
@@ -133,6 +139,7 @@ public class BoxMaker : MonoBehaviour {
 
     private void setChildren(int no){
         copyToTmp();
+        int c = 0;
         switch(no){
             case 0:
             case 1:
@@ -142,6 +149,8 @@ public class BoxMaker : MonoBehaviour {
                     for (int j = 0; j < 3; j++){
                         if (i != 1 || j != 1){
                             boxlist[boxes[x, i, j]].transform.parent = t_prop.getFather().transform;
+                            detatchlist[c] = boxes[x, i, j];
+                            c++;
                             int[] p = calc_turn(i, j);
                             tmp[x, p[0], p[1]] = boxes[x, i, j];
                         }
@@ -156,8 +165,11 @@ public class BoxMaker : MonoBehaviour {
                     for (int j = 0; j < 3; j++){
                         if (i != 1 || j != 1){
                             boxlist[boxes[i, y, j]].transform.parent = t_prop.getFather().transform;
+                            detatchlist[c] = boxes[i, y, j];
+                            c++;
                             int[] p = calc_turn(j, i);
                             tmp[p[1], y, p[0]] = boxes[i, y, j];
+                            
                         }
                     }
                 }
@@ -170,6 +182,8 @@ public class BoxMaker : MonoBehaviour {
                     for (int j = 0; j < 3; j++){
                         if (i != 1 || j != 1){
                             boxlist[boxes[i, j, z]].transform.parent = t_prop.getFather().transform;
+                            detatchlist[c] = boxes[i, j, z];
+                            c++;
                             int[] p = calc_turn(i, j);
                             tmp[p[0], p[1], z] = boxes[i, j, z];
                         }
@@ -213,12 +227,12 @@ public class BoxMaker : MonoBehaviour {
             father.transform.Rotate(new Vector3(t * speed * axis.x, t * speed * axis.y, t * speed * axis.z),Space.World);
         }
 
-        public void turn(float angle)
-        {
+        public void turn(float angle){
             father.transform.Rotate(new Vector3(angle * speed * axis.x, angle * speed * axis.y, angle * speed * axis.z),Space.World);
         }
     }
 
+    /*
     class Box{
         private GameObject box;
         private int roomNo;
@@ -268,4 +282,5 @@ public class BoxMaker : MonoBehaviour {
         }
 
     }
+    */
 }

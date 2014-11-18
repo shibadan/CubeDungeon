@@ -10,6 +10,6 @@ public class turntest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		gameObject.transform.Rotate(new Vector3(0,Time.deltaTime*90f,0));
+		gameObject.transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime*90f);
 	}
 }
