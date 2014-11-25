@@ -14,6 +14,7 @@ public class BoxMaker : MonoBehaviour {
     private int[, ,] tmp = new int[3, 3, 3];
     private int[] detatchlist = new int[8];
     private int detatchCount = 10;
+    private int turndir = 1;
 
     //private int[] center = new int[9];
     private int[,] PLUSTURN = new int[,] { { 0, -1 }, { 1, 0 } };
@@ -86,9 +87,11 @@ public class BoxMaker : MonoBehaviour {
         else if (frame >= 1){
             int fatherNo = Random.Range(0, 9);
             int axis = fatherNo / 3;
+            turndir = Random.Range(0, 2);
+            if (turndir == 0) turndir--;
             isTurning = true;
 
-            t_prop.setTurnProp(axis, boxlist[center(fatherNo)], 1);
+            t_prop.setTurnProp(axis, boxlist[center(fatherNo)], turndir);
 
             setChildren(fatherNo);
 
@@ -108,8 +111,8 @@ public class BoxMaker : MonoBehaviour {
         int[] result = new int[2];
         i--;
         j--;
-        result[0] = i * PLUSTURN[0, 0] + j * PLUSTURN[0, 1];
-        result[1] = i * PLUSTURN[1, 0] + j * PLUSTURN[1, 1];
+        result[0] = i * PLUSTURN[0, 0] + j * PLUSTURN[0, 1] * turndir;
+        result[1] = i * PLUSTURN[1, 0] * turndir + j * PLUSTURN[1, 1];
         result[0]++;
         result[1]++;
         if (result[0] == 1 && result[1] == 1){
