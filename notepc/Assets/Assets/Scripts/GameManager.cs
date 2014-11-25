@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 
 	//Use this for initialization
 	void Start () {
+        box = Instantiate(Resources.Load("Prefab/BoxMaker")) as BoxMaker;
         camera = FindObjectOfType<FollowCamera>();
         player = Instantiate(Resources.Load("Prefab/Player")) as GameObject;
         camera.lookTarget = player.transform;
