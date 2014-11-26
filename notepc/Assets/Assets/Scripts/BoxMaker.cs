@@ -17,8 +17,6 @@ public class BoxMaker : MonoBehaviour {
     private int turndir = 1;
 
     //private int[] center = new int[9];
-    private int[,] PLUSTURN = new int[,] { { 0, -1 }, { 1, 0 } };
-    private int[,] MINUSTURN = new int[,] { { 0, 1 }, { -1, 0 } };
 
     private float frame = 1;
 
@@ -111,8 +109,8 @@ public class BoxMaker : MonoBehaviour {
         int[] result = new int[2];
         i--;
         j--;
-        result[0] = i * PLUSTURN[0, 0] + j * PLUSTURN[0, 1] * turndir;
-        result[1] = i * PLUSTURN[1, 0] * turndir + j * PLUSTURN[1, 1];
+        result[0] = j * (-1) * turndir;
+        result[1] = i * turndir;
         result[0]++;
         result[1]++;
         if (result[0] == 1 && result[1] == 1){

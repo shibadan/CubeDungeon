@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
     FollowCamera camera;
     public BoxMaker box;
     
-
     int curr_roomNo = 0;
 
 	//Use this for initialization
