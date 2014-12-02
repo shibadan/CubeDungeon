@@ -5,6 +5,10 @@ public class EnemyMaker : MonoBehaviour {
 
     private float frame = 0;
 
+    public float spawn_time = 1f;
+
+    const float pai = Mathf.PI;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -13,10 +17,17 @@ public class EnemyMaker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         frame += Time.deltaTime;
-        if (frame > 2f)
+        if (frame > spawn_time)
         {
-            Instantiate(Resources.Load("Prefabs/Enemy"));
+
+            float rad = Random.Range(0, 180);
+
+            float x = Mathf.Cos(pai * rad / 180) * 13f;
+            float y = Mathf.Sin(pai * rad / 180) * 13f - 3f;
+
+            Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(x,y,0), Quaternion.identity);
             frame = 0;
         }
 	}
+
 }

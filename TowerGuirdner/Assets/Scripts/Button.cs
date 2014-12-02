@@ -5,27 +5,40 @@ public class Button : MonoBehaviour {
 
     string[] skills = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
 
+    public int No = 2;
+
+    private Vector3 pos;
+
+    public Texture buttonUp, buttonDown;
+    private bool isMouseOver = false;
+
 	// Use this for initialization
 	void Start () {
-	
+        gameObject.renderer.material.mainTexture = buttonUp;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
-    void OnGUI()
+    void Update()
     {
-        float x = Screen.width / 7f;
-        float y = Screen.height / 5f;
-
-        for (int i = 1; i < 6; i++)
+        if (Input.GetKey(KeyCode.Mouse0) && isMouseOver)
         {
-            Rect rect = new Rect(x*i, y * 3, x, y);
-            if (GUI.Button(rect, "B"+i.ToString()))
+            gameObject.renderer.material.mainTexture = buttonDown;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Instantiate(Resources.Load("Prefabs/" + skills[i-1]));
+                //押された瞬間だけ実行したい処理
+                Instantiate(Resources.Load("Prefabs/"+skills[No]));
             }
         }
+        else
+        {
+            gameObject.renderer.material.mainTexture = buttonUp;
+        }
+        isMouseOver = false;
     }
+
+    void OnMouseOver()
+    {
+        isMouseOver = true;
+    }
+
 }

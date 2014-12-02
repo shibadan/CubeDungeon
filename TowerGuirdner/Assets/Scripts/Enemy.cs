@@ -5,9 +5,18 @@ public class Enemy : MonoBehaviour {
 
     private int hp = 10;
 
+    public GameObject target;
+
+    public float speed = 4;
+
 	// Use this for initialization
 	void Start () {
-        gameObject.rigidbody.velocity = new Vector3(-2f, 0, 0);
+
+        Vector3 direction = target.transform.position - gameObject.transform.position;
+
+        direction.Normalize();
+
+        gameObject.rigidbody.velocity = direction * speed;
 	}
 	
 	// Update is called once per frame
