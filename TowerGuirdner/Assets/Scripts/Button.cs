@@ -5,12 +5,16 @@ public class Button : MonoBehaviour {
 
     string[] skills = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
 
-    public int No = 2;
 
-    private Vector3 pos;
+    //つけたボタンによって変更する
+    public int No;
+
+    public Vector3 pos;
 
     public Texture buttonUp, buttonDown;
     private bool isMouseOver = false;
+
+    private bool isstopped = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +24,7 @@ public class Button : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && isMouseOver)
+        if (Input.GetKey(KeyCode.Mouse0) && isMouseOver && !isstopped)
         {
             gameObject.renderer.material.mainTexture = buttonDown;
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -39,6 +43,16 @@ public class Button : MonoBehaviour {
     void OnMouseOver()
     {
         isMouseOver = true;
+    }
+
+    public void stop()
+    {
+        isstopped = true;
+    }
+
+    public void restart()
+    {
+        isstopped = false;
     }
 
 }

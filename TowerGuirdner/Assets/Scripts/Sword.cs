@@ -5,6 +5,6 @@ public class Sword : Weapon {
 
 	// Use this for initialization
 	void Start () {
-        setDamage(5);
+        setDamage(10);
 	}
 }

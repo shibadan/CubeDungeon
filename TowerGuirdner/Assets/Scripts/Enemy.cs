@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : RigidObject {
 
     private int hp = 10;
 
     public GameObject target;
 
-    public float speed = 4;
+    public float speed = 3f;
+    public bool isDead = false;
+
+    private EnemyMaker manager;
 
 	// Use this for initialization
 	void Start () {
 
+        /* //生成時にターゲットに向かうよう速度を設定する場合
         Vector3 direction = target.transform.position - gameObject.transform.position;
-
         direction.Normalize();
-
         gameObject.rigidbody.velocity = direction * speed;
+        */
+
+        gameObject.rigidbody.velocity = new Vector3(0, -1 * speed, 0);
+
+        manager = FindObjectOfType<EnemyMaker>();
+
 	}
 	
 	// Update is called once per frame
@@ -28,16 +36,17 @@ public class Enemy : MonoBehaviour {
     {
         if (col.gameObject.tag == "DeadLine")
         {
+            manager.remove_one(gameObject);
             Destroy(gameObject);
         }
         else if (col.gameObject.tag == "Attack")
         {
             hp -= col.GetComponent<Weapon>().getDamage();
-            Destroy(col.gameObject);
         }
 
         if (hp <= 0)
         {
+            manager.remove_one(gameObject);
             Destroy(gameObject);
         }
     }

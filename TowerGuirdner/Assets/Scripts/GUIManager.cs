@@ -17,10 +17,6 @@ public class GUIManager : MonoBehaviour {
     {
         
         Rect rect = new Rect(10, 100, 40, 10);
-        bool isClicked = GUI.Button(rect, "Set UP!!");
-        if (isClicked)
-        {
-            Debug.Log("Stand by Ready!");
-        }
+        GUI.TextArea(rect, "a");
     }
 }

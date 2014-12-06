@@ -1,0 +1,9 @@
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\CubeDungeon\TowerGuirdner\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\CubeDungeon\TowerGuirdner\obj\Debug\UnityVS.TowerGuirdner.CSharp.csprojResolveAssemblyReference.cache
+D:\CubeDungeon\TowerGuirdner\obj\Debug\Assembly-CSharp.dll
+D:\CubeDungeon\TowerGuirdner\obj\Debug\Assembly-CSharp.pdb
