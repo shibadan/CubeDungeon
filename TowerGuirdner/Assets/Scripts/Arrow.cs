@@ -5,7 +5,7 @@ public class Arrow : Weapon{
 
 	// Use this for initialization
 	void Start () {
-        transform.rigidbody.velocity = new Vector3(15f, 0f, 0f);
+        transform.rigidbody.velocity = new Vector3(15f, 15f, 0f);
         setDamage(10);
 	}
 

@@ -16,23 +16,26 @@ public class EnemyMaker : MonoBehaviour {
 
     List<GameObject> enemys;
 
-    FrameManager manager;
+    GameManager manager;
+
+    FrameManager f_manager;
 
 	// Use this for initialization
 	void Start () {
-        manager = FindObjectOfType<FrameManager>();
+        manager = FindObjectOfType<GameManager>();
+        f_manager = FindObjectOfType<FrameManager>();
         enemys = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        float delta = manager.getTime();
+        float delta = f_manager.getTime();
         red_frame += delta;
         right_frame += delta;
         left_frame += delta;
         if (red_frame > spawn_time)
         {
-            enemys.Add(Instantiate(Resources.Load("Prefabs/RedEnemy"), new Vector3(0, 10, 0), Quaternion.identity) as GameObject);
+            enemys.Add(Instantiate(Resources.Load("Prefabs/RedEnemy"), new Vector3(0, 9, 0), Quaternion.identity) as GameObject);
             red_frame = 0;
         }
         if (right_frame > right_spawn_time)
@@ -40,8 +43,8 @@ public class EnemyMaker : MonoBehaviour {
             int x;
             for (int i = 0; i < Random.Range(1, 4); i++)
             {
-                x = Random.Range(2, 13);
-                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(x, 10, 0), Quaternion.identity) as GameObject);
+                x = Random.Range(2, 12);
+                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(x, 9, 0), Quaternion.identity) as GameObject);
             }
             right_frame = 0;
             right_spawn_time = Random.Range(0.3f, 1.5f);
@@ -51,8 +54,8 @@ public class EnemyMaker : MonoBehaviour {
             float x;
             for (int i = 0; i < Random.Range(1, 4); i++)
             {
-                x = Random.Range(2, 13);
-                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(-x, 10, 0), Quaternion.identity) as GameObject);
+                x = Random.Range(2, 12);
+                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(-x, 9, 0), Quaternion.identity) as GameObject);
             }
             left_frame = 0;
             left_spawn_time = Random.Range(0.3f, 1.5f);
@@ -76,6 +79,11 @@ public class EnemyMaker : MonoBehaviour {
         {
             e.GetComponent<Enemy>().restart();
         }
+    }
+
+    public void killed()
+    {
+        manager.ScoreUp();
     }
 
 }

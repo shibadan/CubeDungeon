@@ -7,7 +7,7 @@ public class Enemy : RigidObject {
 
     public GameObject target;
 
-    public float speed = 3f;
+    private float speed = 2f;
     public bool isDead = false;
 
     private EnemyMaker manager;
@@ -46,6 +46,7 @@ public class Enemy : RigidObject {
 
         if (hp <= 0)
         {
+            manager.killed();
             manager.remove_one(gameObject);
             Destroy(gameObject);
         }

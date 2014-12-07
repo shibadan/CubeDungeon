@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 
     Button[] buttons;
 
+    private int score = 0;
+
 	// Use this for initialization
 	void Start () {
         enemy = FindObjectOfType<EnemyMaker>();
@@ -39,7 +41,15 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-	
 
+    public void ScoreUp()
+    {
+        score++;
+    }
+
+    public void ScoreDown(int s)
+    {
+        score -= s;
+    }
 
 }

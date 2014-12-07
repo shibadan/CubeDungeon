@@ -11,6 +11,8 @@ public class Slash : Skill {
 	// Use this for initialization
 	void Start () {
         manager = FindObjectOfType<FrameManager>();
+        int r = Random.Range(0, 360);
+        transform.Rotate(new Vector3(0,0,r));
 	}
 	
 	// Update is called once per frame
