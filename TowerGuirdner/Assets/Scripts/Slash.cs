@@ -23,7 +23,7 @@ public class Slash : Skill {
         if(frame > 0.2f){
             Destroy(gameObject);
         }
-        gameObject.renderer.material.mainTexture = frames[(int)(frame / 0.2f *8)];
+        gameObject.renderer.material.mainTexture = frames[(int)(frame / 0.2f *7)];
 	}
 
 }

@@ -24,13 +24,14 @@ public class Button : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.Mouse0) && isMouseOver && !isstopped)
         {
             gameObject.renderer.material.mainTexture = buttonDown;
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //押された瞬間だけ実行したい処理
-                Instantiate(Resources.Load("Prefabs/"+skills[No]));
+               // Instantiate(Resources.Load("Prefabs/"+skills[No]));
             }
         }
         else
@@ -38,12 +39,15 @@ public class Button : MonoBehaviour {
             gameObject.renderer.material.mainTexture = buttonUp;
         }
         isMouseOver = false;
+        */
     }
 
+    /*
     void OnMouseOver()
     {
         isMouseOver = true;
     }
+    */
 
     public void stop()
     {
@@ -53,6 +57,11 @@ public class Button : MonoBehaviour {
     public void restart()
     {
         isstopped = false;
+    }
+
+    public void Tapped()
+    {
+        Instantiate(Resources.Load("Prefabs/" + skills[No]));
     }
 
 }
