@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 
     Button[] buttons;
 
+    public GameObject player;
+
     private int score = 0;
 
 	// Use this for initialization
