@@ -26,4 +26,9 @@ public class Slash : Skill {
         gameObject.renderer.material.mainTexture = frames[(int)(frame / 0.2f *7)];
 	}
 
+    void setProperty(Vector3 target)
+    {
+        transform.position = target;
+    }
+
 }
