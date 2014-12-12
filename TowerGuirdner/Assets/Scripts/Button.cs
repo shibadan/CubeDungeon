@@ -12,9 +12,9 @@ public class Button : MonoBehaviour {
     public Vector3 pos;
 
     public Texture buttonUp, buttonDown;
-    private bool isMouseOver = false;
+    //private bool isMouseOver = false;
 
-    private bool isstopped = false;
+    //private bool isstopped = false;
 
 	// Use this for initialization
 	void Start () {
@@ -51,12 +51,12 @@ public class Button : MonoBehaviour {
 
     public void stop()
     {
-        isstopped = true;
+       // isstopped = true;
     }
 
     public void restart()
     {
-        isstopped = false;
+      //  isstopped = false;
     }
 
     public void Tapped()

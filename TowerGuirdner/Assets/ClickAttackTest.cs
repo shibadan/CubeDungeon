@@ -3,11 +3,13 @@ using System.Collections;
 
 public class ClickAttackTest : MonoBehaviour {
 
-    string[] skills = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
+   // string[] skills = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
+
+    SkillSlot skill;
 
 	// Use this for initialization
 	void Start () {
-	
+        skill = FindObjectOfType<SkillSlot>();
 	}
 	
 	// Update is called once per frame
@@ -23,9 +25,7 @@ public class ClickAttackTest : MonoBehaviour {
  
                 if (obj.tag == "Ground" || obj.tag == "Enemy")
                 {
-                    obj = Instantiate(Resources.Load("Prefabs/" + skills[0]), hit.point, Quaternion.identity)as GameObject;
-
-                    obj.SendMessage("setProperty", hit.point);
+                    skill.Use(hit.point);
                 }
             }
         }
