@@ -10,7 +10,6 @@ public class Slash : Skill {
 
 	// Use this for initialization
 	void Start () {
-        manager = FindObjectOfType<FrameManager>();
         int r = Random.Range(0, 360);
         transform.Rotate(new Vector3(0,0,r));
 	}
@@ -18,7 +17,7 @@ public class Slash : Skill {
 	// Update is called once per frame
 	void Update () {
 
-        frame += manager.getTime();
+        frame += FrameManager.getTime();
 
         if(frame > 0.2f){
             Destroy(gameObject);

@@ -12,7 +12,7 @@ public class SkillSlot : MonoBehaviour {
 
     int curr_slot = 0;
 
-    string[] SKILL = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
+    string[] SKILL = { "Arrow", "Slash", "Beam", "Arrow", "Slash" };
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +34,7 @@ public class SkillSlot : MonoBehaviour {
         o.SendMessage("setProperty", pos);
         slot.RemoveAt(curr_slot);
 
-        int r = Random.Range(0, 2);
+        int r = Random.Range(0, 5);
         slot.Add(r);
         IconUpdate();
     }

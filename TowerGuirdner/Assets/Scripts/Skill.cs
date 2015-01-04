@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Skill : MonoBehaviour {
 
-    public FrameManager manager;
-
 
 	// Use this for initialization
 	void Start () {

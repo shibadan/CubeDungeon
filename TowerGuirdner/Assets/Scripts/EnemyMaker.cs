@@ -8,9 +8,9 @@ public class EnemyMaker : MonoBehaviour {
     private float right_frame = 0;
     private float left_frame = 0;
 
-    public float spawn_time = 2f;
-    public float right_spawn_time = 1f;
-    public float left_spawn_time = 1f;
+    public float spawn_time = 3f;
+    public float right_spawn_time = 2f;
+    public float left_spawn_time = 2f;
 
     const float pai = Mathf.PI;
 
@@ -18,47 +18,50 @@ public class EnemyMaker : MonoBehaviour {
 
     GameManager manager;
 
-    FrameManager f_manager;
-
 	// Use this for initialization
 	void Start () {
         manager = FindObjectOfType<GameManager>();
-        f_manager = FindObjectOfType<FrameManager>();
         enemys = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        float delta = f_manager.getTime();
+        float delta = FrameManager.getTime();
         red_frame += delta;
         right_frame += delta;
         left_frame += delta;
+
+        //中央の敵生成
         if (red_frame > spawn_time)
         {
-            enemys.Add(Instantiate(Resources.Load("Prefabs/RedEnemy"), new Vector3(0, 9, 0), Quaternion.identity) as GameObject);
+            enemys.Add(Instantiate(Resources.Load("Prefabs/RedEnemy"), new Vector3(0, 9, 0), Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject);
             red_frame = 0;
         }
+
+        //画面右側の敵生成
         if (right_frame > right_spawn_time)
         {
             int x;
-            for (int i = 0; i < Random.Range(1, 4); i++)
+            for (int i = 0; i < Random.Range(1, 3); i++)
             {
-                x = Random.Range(2, 12);
-                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(x, 9, 0), Quaternion.identity) as GameObject);
+                x = Random.Range(1, 6);
+                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(x*2, 9, 0), Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject);
             }
             right_frame = 0;
-            right_spawn_time = Random.Range(0.3f, 1.5f);
+            right_spawn_time = Random.Range(1f, 2f);
         }
+        
+        //画面左側の敵生成
         if (left_frame > left_spawn_time)
         {
-            float x;
-            for (int i = 0; i < Random.Range(1, 4); i++)
+            int x;
+            for (int i = 0; i < Random.Range(1, 3); i++)
             {
-                x = Random.Range(2, 12);
-                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(-x, 9, 0), Quaternion.identity) as GameObject);
+                x = Random.Range(1, 6);
+                enemys.Add(Instantiate(Resources.Load("Prefabs/Enemy"), new Vector3(-x * 2, 9, 0), Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject);
             }
             left_frame = 0;
-            left_spawn_time = Random.Range(0.3f, 1.5f);
+            left_spawn_time = Random.Range(1f, 2f);
         }
 
 	}

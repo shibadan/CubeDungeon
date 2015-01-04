@@ -3,22 +3,20 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-    string[] skills = { "Arrow", "Slash", "Slash", "Slash", "Slash" };
+    string[] skills = { "Arrow", "Slash", "Beam", "Slash", "Slash" };
 
 
     //つけたボタンによって変更する
     public int No;
 
-    public Vector3 pos;
 
-    public Texture buttonUp, buttonDown;
     //private bool isMouseOver = false;
 
     //private bool isstopped = false;
 
 	// Use this for initialization
 	void Start () {
-        gameObject.renderer.material.mainTexture = buttonUp;
+        //gameObject.renderer.material.mainTexture = buttonUp;
 	}
 	
 	// Update is called once per frame

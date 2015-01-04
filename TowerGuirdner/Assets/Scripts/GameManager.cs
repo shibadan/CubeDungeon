@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
     EnemyMaker enemy;
-    FrameManager frame;
 
     Button[] buttons;
 
@@ -16,7 +15,6 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         enemy = FindObjectOfType<EnemyMaker>();
-        frame = FindObjectOfType<FrameManager>();
         buttons = FindObjectsOfType<Button>();
 	}
 	
@@ -26,7 +24,7 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown("q"))
         {
             enemy.stop();
-            frame.stop();
+            FrameManager.stop();
             foreach (Button b in buttons)
             {
                 b.stop();
@@ -36,7 +34,7 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown("w"))
         {
             enemy.restart();
-            frame.restart();
+            FrameManager.restart();
             foreach (Button b in buttons)
             {
                 b.restart();
@@ -52,6 +50,11 @@ public class GameManager : MonoBehaviour {
     public void ScoreDown(int s)
     {
         score -= s;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
 }

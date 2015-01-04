@@ -10,6 +10,11 @@ public class Enemy : RigidObject {
     private float speed = 2f;
     public bool isDead = false;
 
+    private float frame = 0;
+    private int curr_tex = 0;
+
+    public Material[] tex = new Material[2];
+
     private EnemyMaker manager;
 
 	// Use this for initialization
@@ -28,8 +33,15 @@ public class Enemy : RigidObject {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update (){ 
+        frame += FrameManager.getTime();
+        if (frame > 0.5)
+        {
+            curr_tex++;
+            curr_tex %= 2;
+            renderer.material = tex[curr_tex];
+            frame = 0;
+        }
 	}
 
     void OnTriggerEnter(Collider col)
@@ -48,6 +60,7 @@ public class Enemy : RigidObject {
         {
             manager.killed();
             manager.remove_one(gameObject);
+            Instantiate(Resources.Load("Effect/DeadEffect"), transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
             Destroy(gameObject);
         }
     }
