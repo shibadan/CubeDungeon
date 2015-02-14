@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Arrow.cs" />
+     <Compile Include="Assets\Scripts\Arrowhit.cs" />
      <Compile Include="Assets\Scripts\Beam.cs" />
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\ClickAttackTest.cs" />
@@ -62,10 +63,12 @@
      <Compile Include="Assets\Scripts\Skill.cs" />
      <Compile Include="Assets\Scripts\SkillSlot.cs" />
      <Compile Include="Assets\Scripts\Slash.cs" />
+     <Compile Include="Assets\Scripts\Slot.cs" />
      <Compile Include="Assets\Scripts\SuperWeapon.cs" />
      <Compile Include="Assets\Scripts\Sword.cs" />
-     <Compile Include="Assets\Scripts\TouchManager.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Slash2.cs" />
+     <Compile Include="Assets\TouchManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

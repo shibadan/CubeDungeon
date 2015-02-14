@@ -3,49 +3,23 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-    string[] skills = { "Arrow", "Slash", "Beam", "Slash", "Slash" };
-
-
-    //つけたボタンによって変更する
-    public int No;
-
-
-    //private bool isMouseOver = false;
-
-    //private bool isstopped = false;
+   // float inst_y, inst_z;
 
 	// Use this for initialization
 	void Start () {
-        //gameObject.renderer.material.mainTexture = buttonUp;
+        //rigidbody.velocity = new Vector3(-10, 0, 0);
+       // inst_y = transform.parent.position.y;
+        //inst_z = transform.parent.position.z;
 	}
 	
 	// Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKey(KeyCode.Mouse0) && isMouseOver && !isstopped)
-        {
-            gameObject.renderer.material.mainTexture = buttonDown;
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                //押された瞬間だけ実行したい処理
-               // Instantiate(Resources.Load("Prefabs/"+skills[No]));
-            }
-        }
-        else
-        {
-            gameObject.renderer.material.mainTexture = buttonUp;
-        }
-        isMouseOver = false;
-        */
+        //if (transform.position.x < -11)
+        //{
+        //    transform.position = new Vector3(11, inst_y, inst_z);
+        //}
     }
-
-    /*
-    void OnMouseOver()
-    {
-        isMouseOver = true;
-    }
-    */
 
     public void stop()
     {
@@ -57,9 +31,5 @@ public class Button : MonoBehaviour {
       //  isstopped = false;
     }
 
-    public void Tapped()
-    {
-        Instantiate(Resources.Load("Prefabs/" + skills[No]));
-    }
 
 }

@@ -4,48 +4,39 @@ using System.Collections.Generic;
 
 public class SkillSlot : MonoBehaviour {
 
-    List<int> slot = new List<int>();
+    //List<int> slot = new List<int>();
 
     //List<GameObject> skills = new List<GameObject>();
 
-    GameObject[] obj = new GameObject[5];
+    //GameObject[] obj = new GameObject[5];
 
-    int curr_slot = 0;
+    //int curr_slot = 0;
 
-    string[] SKILL = { "Arrow", "Slash", "Beam", "Arrow", "Slash" };
+    string[] SKILL = { "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash", "Arrow", "Slash"};
 
 	// Use this for initialization
 	void Start () {
-        for (int i = 0; i < 5; i++)
-        {
-            obj[i] = Instantiate(Resources.Load("Icons/" + SKILL[1]), new Vector3(i*3f,-6.3f,-2f), Quaternion.Euler(0,0,180)) as GameObject;
-            slot.Add(1);
-        }
+        rigidbody.centerOfMass = new Vector3(0, 0, 0);
+        rigidbody.angularVelocity = new Vector3(0, 1.0f, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        //rigidbody.angularVelocity = new Vector3(0, 1.2f, 0);
 	}
-
+    
     public void Use(Vector3 pos)
     {
-        GameObject o = Instantiate(Resources.Load("Prefabs/" + SKILL[slot[curr_slot]])) as GameObject;
-        o.SendMessage("setProperty", pos);
-        slot.RemoveAt(curr_slot);
-
-        int r = Random.Range(0, 5);
-        slot.Add(r);
-        IconUpdate();
-    }
-
-    void IconUpdate()
-    {
-        for (int i = 0; i < 5; i++)
+        float curr_rad = transform.localEulerAngles.y + 6;
+        pos.z = 0;
+        if (curr_rad >= 360)
         {
-            Destroy(obj[i]);
-            obj[i] = Instantiate(Resources.Load("Icons/" + SKILL[slot[i]]), new Vector3(i * 3f, -6.3f, -2f), Quaternion.Euler(0, 0, 180)) as GameObject;
+            curr_rad -= 360;
         }
+        Debug.Log(curr_rad);
+        int skill_no = (int)curr_rad / 12;
+        GameObject o = Instantiate(Resources.Load("Prefabs/" + SKILL[skill_no])) as GameObject;
+        o.SendMessage("setProperty", pos);
     }
 
 }

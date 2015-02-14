@@ -3,12 +3,38 @@ using System.Collections;
 
 public class Arrow : Weapon{
 
+    public Texture2D[] frames = new Texture2D[4];
+
+    float frame = 0;
+
+    int curr_tex = 0;
+
+    bool ishit = false;
+
 	// Use this for initialization
 	void Start () {
         //transform.rigidbody.velocity = new Vector3(15f, 15f, 0f);
-        setDamage(10);
+        
 	}
 
+    void Update()
+    {
+        frame += FrameManager.getTime();
+        if (frame >= 0.2f && !ishit)
+        {
+            curr_tex += 1;
+            curr_tex %= 2;
+            gameObject.renderer.material.mainTexture = frames[curr_tex];
+        }
+        else if (ishit && frame > 0.2f)
+        {
+            Destroy(gameObject);
+        }
+        else if (ishit && frame > 0.1f)
+        {
+            gameObject.renderer.material.mainTexture = frames[3];
+        }
+    }
     public void setProperty(Vector3 target)
     {
         transform.position = new Vector3(0, -4, 0);
@@ -16,7 +42,7 @@ public class Arrow : Weapon{
         dir.Normalize();
         transform.rigidbody.velocity = dir * 25f;
 
-        transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        transform.rotation = Quaternion.FromToRotation(Vector3.down, dir);
         
     }
 
@@ -24,7 +50,10 @@ public class Arrow : Weapon{
     {
         if (col.gameObject.tag == "W_DeadLine" || col.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            ishit = true;
+            frame = 0;
+            transform.rigidbody.velocity = Vector3.zero;
+            gameObject.renderer.material.mainTexture = frames[2];
         }
     }
 
